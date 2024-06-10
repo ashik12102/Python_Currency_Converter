@@ -3,8 +3,10 @@ import requests
 url = "https://api.apilayer.com/fixer/symbols"
 api_key = "sYOvFbbasSjMOuH7UK27PNcwpOohXlkw"
 
+symbol = input("Enter the currency symbol: ")
+
 params = {
-    "symbols": "DMA"
+    "symbols": symbol
 }
 
 headers = {
@@ -17,9 +19,9 @@ status_code = response.status_code
 result = response.json()
 
 if status_code == 200:
-    if "DMA" in result["symbols"]:
-        print("The symbol 'DMA' is valid.")
+    if symbol in result["symbols"]:
+        print(f"The symbol '{symbol}' is valid.")
     else:
-        print("The symbol 'DMA' is not valid.")
+        print(f"The symbol '{symbol}' is not valid.")
 else:
     print("Failed to retrieve data.")
