@@ -2,8 +2,8 @@ import requests
 
 def currency_validation():
     while True:
-        from_currency = input("Enter currency to be converted from:  ")
-        to_currency = input("Enter currency to be converted to:  ")
+        from_currency = input(" Enter currency to be converted from:  ").upper()
+        to_currency = input(" Enter currency to be converted to:  ").upper()
 
         url = "https://api.apilayer.com/fixer/symbols"
         api_key = "sYOvFbbasSjMOuH7UK27PNcwpOohXlkw"
@@ -24,7 +24,7 @@ def currency_validation():
         if status_code == 200:
             if from_currency in result["symbols"]:
                 if to_currency in result["symbols"]:
-                    print(f"1 {from_currency} is equal to {result['symbols'][to_currency]} {to_currency}.")
+                    
                     break
                 else:
                     print(f"The currency '{to_currency}' is not valid.")
