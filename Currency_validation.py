@@ -1,6 +1,6 @@
 import requests
 
-def currency_converter():
+def currency_validation():
     while True:
         from_currency = input("Enter currency to be converted from:  ")
         to_currency = input("Enter currency to be converted to:  ")
@@ -38,4 +38,4 @@ def currency_converter():
         else:
             print("Failed to retrieve data.")
 
-currency_converter()
+currency_validation()
