@@ -29,7 +29,7 @@ def currency_validation():
                 else:
                     print(f"The currency '{to_currency}' is not valid.")
             elif to_currency in result["symbols"]:
-                print(f"1 {from_currency} is equal to {result['symbols'][to_currency]} {to_currency}.")
+                print(f"The Entered currency is not valid")
                 break
             elif from_currency not in result["symbols"]:
                 print(f"The currency '{from_currency}' is not valid.")
