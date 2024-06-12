@@ -58,6 +58,6 @@ def currency_validation():
             "apikey": "sYOvFbbasSjMOuH7UK27PNcwpOohXlkw"
                 }
     response = requests.request("GET", url, headers=headers, data = payload)
-    print(response.json())    
+    print("Converted amount will be: " + str(response.json()["result"]))
 
 currency_validation()
