@@ -1,8 +1,8 @@
-# import requests
-# from Currency_validation import currency_validation
-# from Amount_validation import amount_validation
-# from_currency,to_currency = currency_validation()
-# Amount = amount_validation()
+import requests
+from Currency_validation import currency_validation
+from Amount_validation import amount_validation
+from_currency,to_currency = currency_validation()
+Amount = amount_validation()
 import Currency_validation
 import Amount_validation
 
