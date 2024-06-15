@@ -22,7 +22,7 @@ def currency_calculator():
                 errors.append("Amount needs to be greater than 0.")
             if amount == 0:
                 errors.append("Amound is equeal to 0")
-        except ValueError:
+        except:
             errors.append("Invalid amount.")
 
         if not errors:
@@ -48,6 +48,7 @@ def currency_calculator():
                 convert_url = f"https://api.apilayer.com/fixer/convert?to={to_currency}&from={from_currency}&amount={amount}"
                 response = requests.get(convert_url,params=params,headers=headers)
                 conversion_result = response.json()
+                print (conversion_result)
 
                 if response.status_code == 200 and 'result' in conversion_result:
                     result = conversion_result['result']
