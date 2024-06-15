@@ -1,63 +1,45 @@
+from flask import Flask, render_template, request
 import requests
 
-def currency_validation():
-    while True:
-        from_currency = input(" Enter currency to be converted from:  ").upper()
-        to_currency = input(" Enter currency to be converted to:  ").upper()
+app = Flask(__name__)
 
-        url = "https://api.apilayer.com/fixer/symbols"
-        api_key = "sYOvFbbasSjMOuH7UK27PNcwpOohXlkw"
+API_KEY = "41ysUqRCsWqnH7xPKRbUnvpTwuxSrKC7"
 
-        params = {
-            "symbols": f"{from_currency},{to_currency}"
-        }
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    result = None
+    errors = None
 
-        headers = {
-            "apikey": api_key
-        }
+    if request.method == 'POST':
+        from_currency = request.form['from_currency'].upper()
+        to_currency = request.form['to_currency'].upper()
+        amount = request.form['amount']
 
-        response = requests.get(url, params=params, headers=headers)
+        # Validate currencies
+        symbols_url ="https://api.apilayer.com/fixer/symbols"
+        headers = {"apikey": API_KEY}
+        response = requests.get(symbols_url, headers=headers)
+        symbols = response.json().get('symbols', {})
 
-        status_code = response.status_code
-        result = response.json()
+        errors = []
+        if from_currency not in symbols:
+            errors.append(f"The currency '{from_currency}' is not valid.")
+        if to_currency not in symbols:
+            errors.append(f"The currency '{to_currency}' is not valid.")
 
-        if status_code == 200:
-            if from_currency in result["symbols"]:
-                if to_currency in result["symbols"]:
-                    
-                    break
-                else:
-                    print(f"The currency '{to_currency}' is not valid.")
-            elif to_currency in result["symbols"]:
-                print(f"The Entered currency is not valid")
-                break
-            elif from_currency not in result["symbols"]:
-                print(f"The currency '{from_currency}' is not valid.")
-            elif to_currency not in result["symbols"]:
-                print(f"The currency '{to_currency}' is not valid.")
-        else:
-            print("Failed to retrieve data.")
+        if not errors:
+            # Convert currency
+            convert_url = f"https://api.apilayer.com/fixer/convert?to={to_currency}&from={from_currency}&amount={amount}"
+            response = requests.get(convert_url, headers=headers)
+            print(response)
+            conversion_result = response.json()
 
-#currency_validation()
+            if response.status_code == 200 and 'result' in conversion_result:
+                result = conversion_result['result']
+            else:
+                errors.append("Conversion failed. Please check the currency codes and try again.")
 
-    while True:
-        try:
-            Amount = float(input("Enter the amount to be converted: "))
-        except:
-            print("the entered input is invalid")
-            continue
-        if Amount<0:
-            print("Amount needs to greater than 0")
-        else:
-            break
+    return render_template('index.html', result=result, errors=errors)
 
-    url = f"https://api.apilayer.com/fixer/convert?to={to_currency}&from={from_currency}&amount={Amount}"
-
-    payload = {}
-    headers= {
-            "apikey": "sYOvFbbasSjMOuH7UK27PNcwpOohXlkw"
-                }
-    response = requests.request("GET", url, headers=headers, data = payload)
-    print("Converted amount will be: " + str(response.json()["result"]))
-
-currency_validation()
+if __name__ == '__main__':
+    app.run(debug=True)
