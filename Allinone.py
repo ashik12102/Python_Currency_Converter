@@ -48,7 +48,7 @@ def currency_calculator():
                 convert_url = f"https://api.apilayer.com/fixer/convert?to={to_currency}&from={from_currency}&amount={amount}"
                 response = requests.get(convert_url,params=params,headers=headers)
                 conversion_result = response.json()
-                print (conversion_result)
+                # print (conversion_result)
 
                 if response.status_code == 200 and 'result' in conversion_result:
                     result = conversion_result['result']
