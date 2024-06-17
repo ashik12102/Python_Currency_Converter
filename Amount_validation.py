@@ -9,5 +9,8 @@ def amount_validation():
             continue
         if Amount<0:
             print("Amount needs to greater than 0")
+            continue
+        elif Amount == 0:
+            print("Amount cannot be zero. Please enter an amount greater than 0")
         else:
             return Amount
