@@ -6,7 +6,7 @@ def currency_validation():
         to_currency = input(" Enter currency to be converted to:  ").upper().strip()
 
         url = "https://api.apilayer.com/fixer/symbols"
-        api_key = "sYOvFbbasSjMOuH7UK27PNcwpOohXlkw"
+        api_key = "41ysUqRCsWqnH7xPKRbUnvpTwuxSrKC7"
 
         params = {
             "symbols": f"{from_currency},{to_currency}"

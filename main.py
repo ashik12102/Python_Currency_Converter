@@ -7,7 +7,7 @@ def currency_converter(from_currency,to_currency,Amount):
 
     payload = {}
     headers= {
-            "apikey": "sYOvFbbasSjMOuH7UK27PNcwpOohXlkw"
+            "apikey": "41ysUqRCsWqnH7xPKRbUnvpTwuxSrKC7"
                 }
     response = requests.request("GET", url, headers=headers, data = payload)
     print("Converted amount will be: " + str(response.json()["result"]))
