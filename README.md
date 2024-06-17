@@ -1,3 +1,4 @@
+
 # Currency Converter Web Application
 
 ## Project Overview
@@ -57,3 +58,4 @@ The Currency Converter Web Application allows users to convert an amount from on
 5. **Open `index.html`** in your web browser to use the web interface.
 
 This project is a collaborative effort demonstrating the integration of Python for backend processing and HTML/CSS for frontend design.
+
