@@ -2,7 +2,7 @@ def amount_validation():
 
     while True:
         try:
-            Amount = float(input("Enter the amount to be converted: "))
+            Amount = float(input("Enter the amount to be converted: ").strip())
             
         except ValueError:
             print("the amount is invalid")
