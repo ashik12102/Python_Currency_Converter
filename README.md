@@ -2,7 +2,8 @@
 # Currency Converter Web Application
 
 ## Project Overview
-This project is part of the **Redi - Python Foundation** course. It demonstrates a currency converter web application built using Python, CSS, and HTML.
+
+This repository has the final version of a project submitted for the ReDI School of Digital Integration's course on Python Fundamentals. It is a Flask-based currency converter application that allows users to convert amounts between different currencies using the [Fixer API](https://apilayer.com/marketplace/fixer-api).
 
 ## Team Members
 - Mohamed Ashik
@@ -10,18 +11,14 @@ This project is part of the **Redi - Python Foundation** course. It demonstrates
 - Matheus Zago
 
 ## Project Description
-The Currency Converter Web Application allows users to convert an amount from one currency to another using real-time exchange rates from the Fixer API. The application ensures that the input currencies are valid and provides the converted amount based on the current exchange rates.
+The Currency Converter Web Application allows users to convert an amount from one currency to another using real-time exchange rates from the Fixer API. The application ensures that the input currencies are valid and provides the converted amount based on the current exchange rates. The project consists of three main Python files and an optional all-in-one file:
 
-## Implementation Details
+1. **currency_validation.py** - Validates the input currencies.
+2. **amount_validation.py** - Validates the input amount.
+3. **currency_converter.py** - Handles the currency conversion logic.
+4. **main.py** - The main file that ties everything together and runs the Flask application.
 
-### Python Backend
-- **Currency Validation**: The application validates the input currencies by checking against the Fixer API's available symbols.
-- **Amount Validation**: Ensures the entered amount is a positive number.
-- **Currency Conversion**: Uses the Fixer API to convert the amount from the source currency to the target currency.
-
-### HTML and CSS Frontend
-- **HTML**: Provides the structure for the web application, including input fields for the source and target currencies, the amount to be converted, and a button to trigger the conversion.
-- **CSS**: Styles the HTML elements, ensuring a user-friendly and visually appealing interface.
+Additionally, an **allinone.py** file is provided, which combines the functionality of the above three modules into a single script for convenience.
 
 ## Code Explanation
 
@@ -38,24 +35,68 @@ The Currency Converter Web Application allows users to convert an amount from on
    - Displays the result to the user.
 
 
-# How to Run the Application
-1. **Clone the Repository**:
-   ```sh
-   git clone https://github.com/your-repo/currency-converter.git
-   ```
-2. **Navigate to the Project Directory**:
-   ```sh
-   cd currency-converter
-   ```
-3. **Install Dependencies**:
-   ```sh
-   pip install -r requirements.txt
-   ```
-4. **Run the Application**:
-   ```sh
-   python main.py
-   ```
-5. **Open `index.html`** in your web browser to use the web interface.
+### Prerequisites
+The required packages for this project are listed in the requirements.txt file.
+Bellow are the libraries that you will have to install. 
+
+- Python 3.x
+- Flask
+- Requests
+
+# Check how to deploy our app.
+
+### Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/ashik12102/Python_Currency_Converter.git
+    cd Python_Currency_Converter
+    ```
+
+2. Install the required packages:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Set up your API key:
+
+    - Sign up for an API key from [Fixer](https://apilayer.com/marketplace/fixer-api).
+    - Replace the placeholder API keys in `currency_validation.py`, `currency_converter.py`, and `allinone.py` with your actual API key.
+
+### Running the Application
+
+To run the application, you can choose either the modular approach with `main.py` or the all-in-one approach with `allinone.py`.
+
+#### Using main.py
+
+1. Ensure the `main.py`, `currency_validation.py`, `amount_validation.py`, and `currency_converter.py` files are in the same directory.
+2. Run the Flask application:
+
+    ```bash
+    python main.py
+    ```
+
+3. Open your browser and navigate to `http://127.0.0.1:5000`.
+
+#### Using allinone.py
+
+1. Ensure the `allinone.py` file is in your project directory.
+2. Run the Flask application:
+
+    ```bash
+    python allinone.py
+    ```
+
+3. Open your browser and navigate to `http://127.0.0.1:5000`.
+
+### Usage
+
+1. Enter the source currency code (e.g., USD).
+2. Enter the target currency code (e.g., EUR).
+3. Enter the amount to convert.
+4. Click on the "Convert" button to see the conversion result.
 
 This project is a collaborative effort demonstrating the integration of Python for backend processing and HTML/CSS for frontend design.
 
