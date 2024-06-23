@@ -100,5 +100,68 @@ To run the application, you can choose either the modular approach with `main.py
 
 ![alt text](image.png)
 
-This project is a collaborative effort demonstrating the integration of Python for backend processing and HTML/CSS for frontend design.
 
+### Fixer API Reference
+
+The Fixer API is a RESTful service providing real-time and historical exchange rates. Below is a summary of the key endpoints and parameters.
+
+#### Authentication
+- **API Key**: All requests require a custom HTTP header named `apikey`.
+- **HTTPS Required**: All API requests must be made over HTTPS.
+
+#### Endpoints
+
+##### 1. Currency Conversion (`/convert`)
+- **Description**: Converts any amount from one currency to another.
+- **Parameters**:
+  - `amount` (required): The amount to be converted.
+  - `from` (required): The three-letter currency code of the currency to convert from.
+  - `to` (required): The three-letter currency code of the currency to convert to.
+  - `date` (optional): Historical conversion rate (format `YYYY-MM-DD`).
+- **Example**:
+  ```bash
+  GET https://api.apilayer.com/fixer/convert?to={to_currency}&from={from_currency}&amount={amount}
+  ```
+
+##### 2. Historical Rates (`/{date}`)
+- **Description**: Fetches historical exchange rates for a specific date.
+- **Parameters**:
+  - `date` (required): The date for historical rates (format `YYYY-MM-DD`).
+  - `base` (optional): The three-letter currency code for the base currency.
+  - `symbols` (optional): Comma-separated list of currency codes to limit output.
+- **Example**:
+  ```bash
+  GET https://api.apilayer.com/fixer/{date}?base={base_currency}&symbols={currency_list}
+  ```
+
+##### 3. Latest Rates (`/latest`)
+- **Description**: Fetches real-time exchange rate data.
+- **Parameters**:
+  - `base` (optional): The three-letter currency code for the base currency.
+  - `symbols` (optional): Comma-separated list of currency codes to limit output.
+- **Example**:
+  ```bash
+  GET https://api.apilayer.com/fixer/latest?base={base_currency}&symbols={currency_list}
+  ```
+
+#### Example Request
+```python
+import requests
+
+url = "https://api.apilayer.com/fixer/convert"
+params = {
+    "to": "EUR",
+    "from": "USD",
+    "amount": 100
+}
+headers = {
+    "apikey": "YOUR_API_KEY"
+}
+
+response = requests.get(url, params=params, headers=headers)
+print(response.json())
+```
+
+This API documentation covers the essentials for making requests and handling responses from the Fixer API. For more detailed information, refer to the [Fixer API documentation](https://apilayer.com/marketplace/fixer-api).
+
+This project is a collaborative effort demonstrating the integration of Python for backend processing and HTML/CSS for frontend design.
