@@ -98,5 +98,7 @@ To run the application, you can choose either the modular approach with `main.py
 3. Enter the amount to convert.
 4. Click on the "Convert" button to see the conversion result.
 
+![alt text](image.png)
+
 This project is a collaborative effort demonstrating the integration of Python for backend processing and HTML/CSS for frontend design.
 
